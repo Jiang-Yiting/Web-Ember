@@ -23,13 +23,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.5.0/remixicon.min.css">
 
-    <!-- 移除这里重复的 <script> 标签，只保留 body 里的一个 -->
+    <!-- 确保这里没有任何主应用入口的 <script> 标签 -->
   </head>
   <body>
     <div id="root"></div>
     
-    <!-- 修正后的主应用入口：确保路径是正确的 /Web-Ember/src/main.tsx -->
-    <script type="module" src="/Web-Ember/src/main.tsx"></script> 
+    <!-- ！！！ 关键：删除您手动添加的 <script type="module" src="/Web-Ember/src/main.tsx"></script> ！！！ -->
+    <!-- 让 Vite 在构建时自动注入正确的 <script> 标签 -->
     
     <!-- 助手脚本保留 -->
     <script 
