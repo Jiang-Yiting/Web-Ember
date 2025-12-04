@@ -5,8 +5,13 @@ import AutoImport from "unplugin-auto-import/vite";
 
 const base = process.env.BASE_PATH || "/";
 const isPreview = process.env.IS_PREVIEW ? true : false;
-// https://vite.dev/config/
+// https://vitejs.dev/config/
 export default defineConfig({
+  // ----------------------------------------------------
+  // ！！！ 关键修复：解决 GitHub Pages 路径问题 ！！！
+  // ----------------------------------------------------
+  base: '/Web-Ember/', 
+  
   define: {
     __BASE_PATH__: JSON.stringify(base),
     __IS_PREVIEW__: JSON.stringify(isPreview),
@@ -65,7 +70,7 @@ export default defineConfig({
       dts: true,
     }),
   ],
-  base,
+  
   build: {
     sourcemap: true,
     outDir: "out",
