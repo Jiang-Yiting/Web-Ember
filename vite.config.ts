@@ -4,20 +4,17 @@ import { resolve } from "node:path";
 import AutoImport from "unplugin-auto-import/vite";
 
 // ----------------------------------------------------
-// 关键修改：移除冲突变量，锁定 base 路径 
+// 恢复到标准配置：移除所有 GitHub Pages 路径修复
 // ----------------------------------------------------
 const isPreview = process.env.IS_PREVIEW ? true : false;
 // https://vitejs.dev/config/
 export default defineConfig({
   
-  // ----------------------------------------------------
-  // 最终的路径修复：告诉 Vite 网站部署在 /Web-Ember/ 子目录
-  base: '/Web-Ember/', 
-  // ----------------------------------------------------
+  // ！！！ 移除 base: '/Web-Ember/' 属性 ！！！
   
   define: {
-    // 这里的 __BASE_PATH__ 现在使用我们固定的 /Web-Ember/ 路径
-    __BASE_PATH__: JSON.stringify('/Web-Ember/'), 
+    // 恢复使用环境变量，并确保路径为根目录
+    __BASE_PATH__: JSON.stringify('/'), 
     __IS_PREVIEW__: JSON.stringify(isPreview),
     __READDY_PROJECT_ID__: JSON.stringify(process.env.PROJECT_ID || ""),
     __READDY_VERSION_ID__: JSON.stringify(process.env.VERSION_ID || ""),
@@ -77,7 +74,7 @@ export default defineConfig({
   
   build: {
     sourcemap: true,
-    outDir: "out",
+    outDir: "out", // 保持原来的 outDir
   },
   resolve: {
     alias: {
